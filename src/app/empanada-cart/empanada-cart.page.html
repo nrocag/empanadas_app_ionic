@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Carrito de empanadas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of items">
+      <ion-item>
+        <ion-icon [name]="'check'" slot="start"></ion-icon>
+        <ion-label>Nombre: {{item.name}}</ion-label>
+        <ion-label>Cantidad: {{item.quantity}}</ion-label>
+        <ion-label>Precio Unidad: $ {{item.price}}</ion-label>
+        <ion-label>Total: $ {{item.quantity * item.price}}</ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="delete(item._id)">
+          <ion-icon name="garbage"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-item>
+    <ion-label>Total: $ {{total}}</ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Dirección</ion-label>
+    <ion-textarea [(ngModel)]="delivery.address" [ngModelOptions]="{standalone: true}"></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Forma de pago</ion-label>
+    <ion-select [(ngModel)]="delivery.payment" [ngModelOptions]="{standalone: true}"
+      [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Seleccione uno">
+      <ion-select-option value="1">Efectivo</ion-select-option>
+      <ion-select-option value="2">Tarjeta de credito</ion-select-option>
+      <ion-select-option value="3">Tarjeta debito</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button color="primary" type="submit" expand="full" (click)="buy()">Delivery</ion-button>
+
+</ion-content>

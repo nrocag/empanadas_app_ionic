@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Detalle de la empanada</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <img src={{empanada.image}} alt="Nada" height="230" width="330" />
+
+  <ion-item>
+    <ion-label>Nombre: {{empanada.name}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>Descripcion: {{empanada.description}}</ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Cantidad</ion-label>
+    <ion-select [(ngModel)]="empanada.quantity" [ngModelOptions]="{standalone: true}"
+      [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Seleccione uno">
+      <ion-select-option value="1">1</ion-select-option>
+      <ion-select-option value="2">2</ion-select-option>
+      <ion-select-option value="3">3</ion-select-option>
+      <ion-select-option value="4">4</ion-select-option>
+
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Valor: $ {{empanada.price}}</ion-label>
+  </ion-item>
+
+  <ion-button color="primary" type="submit" expand="full" (click)="addCart(empanada)">Add Cart</ion-button>
+</ion-content>
